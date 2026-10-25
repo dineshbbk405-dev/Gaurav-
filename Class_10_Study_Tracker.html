@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Class 10 Study Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f4f9;--ink:#14213d;--mute:#5b6784;--line:#d5dce8;--sf:#fff;--ok:#15803d;--rev:#b45309;--no:#b91c1c;--onc:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1424;--ink:#e8ecf6;--mute:#9aa6c3;--line:#26304a;--sf:#161e34;--ok:#4ade80;--rev:#fbbf24;--no:#f87171;--onc:#0e1424}}
+:root[data-theme="dark"]{--bg:#0e1424;--ink:#e8ecf6;--mute:#9aa6c3;--line:#26304a;--sf:#161e34;--ok:#4ade80;--rev:#fbbf24;--no:#f87171;--onc:#0e1424}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.4}
+main{max-width:680px;margin:0 auto;padding:28px 18px 60px}
+h1{font-size:clamp(2rem,8vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:6px 0 8px}
+.sub{color:var(--mute);margin:0 0 24px}
+a.back{display:inline-block;color:var(--mute);text-decoration:none;font-weight:600;padding:6px 0}
+a.back:hover{color:var(--ink)}
+.list{display:flex;flex-direction:column;gap:10px;padding:0;margin:0;list-style:none}
+.row{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:var(--sf);border:1px solid var(--line);border-left:8px solid var(--h);border-radius:6px;padding:16px 16px 14px;text-decoration:none;cursor:pointer}
+.row:hover{border-color:var(--h)}
+.row:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.row b{display:block;font-size:1.35rem;font-weight:600;letter-spacing:-.01em}
+.row small{color:var(--mute)}
+.bar{height:5px;background:var(--line);border-radius:3px;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--h);width:0}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;color:var(--mute);font-size:.9rem;margin:0 0 14px}
+.legend span b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;margin-right:5px;font-size:.8rem;color:var(--onc)}
+.l-c b{background:var(--ok)}.l-r b{background:var(--rev)}.l-x b{background:var(--no)}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--sf);border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.ch .n{font-weight:400;min-width:0}
+.ch-title{color:inherit;text-decoration:none;display:block}.ch-title:hover{text-decoration:underline}.task-list{list-style:none;padding:0;margin:18px 0;display:grid;gap:12px}.task{display:flex;align-items:center;gap:12px;background:var(--sf);border:1px solid var(--line);border-radius:8px;padding:16px;font-size:1.1rem}.task input{width:22px;height:22px;accent-color:var(--ok);flex:none}.task label{flex:1;cursor:pointer}.chapter-note{color:var(--mute);margin-top:0}
+.ch .n em{font-style:normal;color:var(--mute);margin-right:8px}
+.ch .b{display:flex;gap:6px;flex:none}
+.ch button{width:40px;height:40px;border-radius:50%;border:2px solid var(--line);background:transparent;color:var(--mute);font:600 1.1rem/1 inherit;cursor:pointer}
+.ch button.c[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:var(--onc)}
+.ch button.r[aria-pressed="true"]{background:var(--rev);border-color:var(--rev);color:var(--onc)}
+.ch button.x[aria-pressed="true"]{background:var(--no);border-color:var(--no);color:var(--onc)}
+.sum{font-weight:600;margin:0 0 14px}
+.ch .n small{display:block;color:var(--mute);font-size:.82rem}
+.ch .b{position:relative}
+.ch button.box{border-radius:8px;font-size:1.25rem}
+.ch button.box.c{background:var(--ok);border-color:var(--ok);color:var(--onc)}
+.ch button.box.r{background:var(--rev);border-color:var(--rev);color:var(--onc)}
+.ch button.box.x{background:var(--no);border-color:var(--no);color:var(--onc)}
+.menu{position:absolute;right:0;top:46px;z-index:10;display:flex;flex-direction:column;min-width:190px;background:var(--sf);border:1px solid var(--line);border-radius:8px;padding:4px;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.menu[hidden]{display:none}
+.ch .menu button{width:auto;height:auto;border:0;border-radius:6px;padding:11px 12px;text-align:left;font:600 1rem/1.2 inherit;color:var(--ink)}
+.ch .menu button:hover{background:var(--bg)}
+.ch .menu button.c{color:var(--ok)}.ch .menu button.r{color:var(--rev)}.ch .menu button.x{color:var(--no)}
+.ch .menu button:last-child{color:var(--mute);font-weight:400}
+</style></head>
+<body><main id="app"></main>
+<script>
+const S=[
+{id:"hindi",name:"Hindi",h:"#e11d48",sub:[
+{id:"hgrammar",name:"Grammar and Lekhan",ch:["Apathit Bodh (unseen passage and poem)","Rachna ke aadhar par Vakya Bhed","Vachya","Pad Parichay","Alankar|Arthalankar only: Upma, Rupak, Utpreksha, Atishyokti, Manvikaran","Anuchhed Lekhan","Patra Lekhan (formal or informal)","Svavritt Lekhan or E-mail Lekhan","Vigyapan Lekhan or Sandesh Lekhan"]},
+{id:"kshitij",name:"Kshitij",ch:["Surdas ke Pad","Ram-Lakshman-Parshuram Samvad","Aatmakathya","Utsah and At Nahi Rahi Hai","Yah Danturit Muskan and Fasal","Sangatkar","Netaji ka Chashma","Balgobin Bhagat","Lakhnavi Andaz","Ek Kahani Yah Bhi","Naubatkhane mein Ibadat","Sanskriti"]},
+{id:"kritika",name:"Kritika",ch:["Mata ka Aanchal","Sana Sana Haath Jodi","Main Kyon Likhta Hoon"]}]},
+{id:"english",name:"English",h:"#7c3aed",sub:[
+{id:"firstflight",name:"First Flight",ch:["A Letter to God","Nelson Mandela: Long Walk to Freedom","Stories About Flying","From the Diary of Anne Frank","Glimpses of India","Mijbil the Otter","Madam Rides the Bus","The Sermon at Benares","The Proposal (play)","Poem: Dust of Snow","Poem: Fire and Ice","Poem: A Tiger in the Zoo","Poem: How to Tell Wild Animals","Poem: The Ball Poem","Poem: Amanda!","Poem: The Trees","Poem: Fog","Poem: The Tale of Custard the Dragon","Poem: For Anne Gregory"]},
+{id:"footprints",name:"Footprints without Feet",ch:["A Triumph of Surgery","The Thief's Story","The Midnight Visitor","A Question of Trust","Footprints without Feet","The Making of a Scientist","The Necklace","Bholi","The Book that Saved the Earth"]},
+{id:"egrammar",name:"Grammar and Writing",ch:["Reading Comprehension (unseen passages)","Determiners","Tenses","Modals","Subject-Verb Concord","Reported Speech|Commands and requests, statements, questions","Gap Filling, Editing and Transformation","Formal Letter Writing","Analytical Paragraph"]}]},
+{id:"math",name:"Math",h:"#0369a1",ch:["Real Numbers|Fundamental Theorem of Arithmetic; irrationality of √2, √3, √5","Polynomials|Zeros; relation between zeros and coefficients of quadratic polynomials","Pair of Linear Equations in Two Variables","Quadratic Equations|Real roots only","Arithmetic Progressions","Coordinate Geometry|Distance formula; section formula (internal division)","Triangles","Circles|Tangents","Introduction to Trigonometry","Trigonometric Identities","Heights and Distances|Angles 30°, 45°, 60° only; not more than two right triangles","Areas Related to Circles|Segment problems only for 60°, 90°, 120°","Surface Areas and Volumes|Combinations of any two solids","Statistics|Mean, median and mode of grouped data","Probability|Classical definition"]},
+{id:"science",name:"Science",h:"#0f766e",sub:[
+{id:"physics",name:"Physics",ch:["Light: Reflection and Refraction","The Human Eye and the Colourful World|Excluding colour of the sun at sunrise and sunset","Electricity","Magnetic Effects of Electric Current|Motor, Electromagnetic Induction and Generator are not in the written exam"]},
+{id:"chemistry",name:"Chemistry",ch:["Chemical Reactions and Equations","Acids, Bases and Salts","Metals and Non-metals","Carbon and its Compounds"]},
+{id:"biology",name:"Biology",ch:["Life Processes","Control and Coordination","How do Organisms Reproduce?","Heredity|Mendel's laws and sex determination, brief introduction. Evolution is not in the written exam.","Our Environment"]}]},
+{id:"sst",name:"Social Science",h:"#b45309",sub:[
+{id:"history",name:"History",ch:["The Rise of Nationalism in Europe","Nationalism in India|Map: Congress sessions (1920 Calcutta, 1920 Nagpur, 1927 Madras); Kheda, Champaran, Ahmedabad; Jallianwala Bagh; Dandi March","The Making of a Global World|Only subtopics 1 to 1.3: The Pre-modern World to Conquest, Disease and Trade","Print Culture and the Modern World"]},
+{id:"geography",name:"Geography",ch:["Resources and Development|Map: major soil types","Forest and Wildlife Resources","Water Resources|Map: major dams (Salal, Bhakra Nangal, Tehri, Rana Pratap Sagar, Sardar Sarovar, Hirakud, Nagarjuna Sagar, Tungabhadra)","Agriculture|Map: rice and wheat areas; top producer states of sugarcane, tea, coffee, rubber, cotton, jute","Minerals and Energy Resources|Map: iron ore mines, coal mines, oil fields, thermal and nuclear power plants","Manufacturing Industries|Map: cotton textile centres, iron and steel plants, software technology parks","Lifelines of National Economy|Map work only: major sea ports and international airports"]},
+{id:"civics",name:"Civics",ch:["Power Sharing","Federalism","Gender, Religion and Caste","Political Parties","Outcomes of Democracy"]},
+{id:"economics",name:"Economics",ch:["Development","Sectors of the Indian Economy","Money and Credit","Globalisation and the Indian Economy|Only: What is Globalisation? and Factors that have enabled Globalisation"]}]},
+{id:"ai",name:"AI",h:"#c026d3",ch:["Communication Skills-II","Self-Management Skills-II","ICT Skills-II","Entrepreneurial Skills-II","Green Skills-II","Revisiting AI Project Cycle and Ethical Frameworks for AI","Advanced Concepts of Modeling in AI","Evaluating Models","Computer Vision|Written exam: introduction, applications, pixels, resolution, grayscale and RGB. Convolution, CNN and no-code tools are practical only.","Natural Language Processing|Written exam: introduction, applications, stages of NLP, chatbots, text normalisation, bag of words. Sentiment analysis walkthrough is practical only."]}
+];
+let st={};
+try{st=JSON.parse(localStorage.getItem("c10")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("c10",JSON.stringify(st))}catch(e){}};
+const chs=n=>n.sub?n.sub.flatMap(s=>s.ch.map((c,i)=>s.id+"/"+i)):n.ch.map((c,i)=>n.id+"/"+i);
+const progress=n=>{const k=chs(n);let checked=0,total=k.length*2;k.forEach(x=>{if(st["theory/"+x])checked++;if(st["practice/"+x])checked++});return[checked,total,total?Math.round(checked/total*100):0]};
+const bar=(n,h)=>{const[checked,total,pct]=progress(n);return`<small>${pct}% completed</small><div class="bar" style="--h:${h}"><i style="width:${pct}%"></i></div>`};
+const SY={c:["✓","Complete"],r:["○","Partially complete / Need revision"],x:["✗","Incomplete"]};
+// Theory + Practice automatically determine the chapter marker when either is checked.
+const statusForChapter=k=>{
+ const theory=!!st["theory/"+k], practice=!!st["practice/"+k];
+ if(theory&&practice)return "c";
+ if(theory||practice)return "r";
+ return st[k]||"";
+};
+const boxHTML=(k,n)=>{const v=statusForChapter(k);return `<button class="box ${v}" data-box="${k}" aria-haspopup="true" aria-expanded="false" aria-label="${v?SY[v][1]:"Not marked"}: ${n}. Change status">${v?SY[v][0]:""}</button><span class="menu" hidden>`+Object.keys(SY).map(v=>`<button class="o ${v}" data-k="${k}" data-v="${v}">${SY[v][0]} ${SY[v][1]}</button>`).join("")+`<button class="o" data-k="${k}" data-v="">Clear</button></span>`;};
+const app=document.getElementById("app");
+function render(){
+ const p=location.hash.replace(/^#\/?/,"").split("/").filter(Boolean);
+ const top=S.find(s=>s.id==p[0]);
+ const sub=top&&top.sub&&top.sub.find(s=>s.id==p[1]);
+ const isChapter=!!top && (p[1]==="chapter" || p[2]==="chapter");
+ let chapterIndex=-1, chapterNode=null, chapterKey="", backHash="#/"+(top?top.id:"");
+ if(isChapter){
+  if(p[1]==="chapter"){chapterNode=top;chapterIndex=Number(p[2]);chapterKey=top.id+"/"+chapterIndex;backHash="#/"+top.id;}
+  else if(sub&&p[2]==="chapter"){chapterNode=sub;chapterIndex=Number(p[3]);chapterKey=sub.id+"/"+chapterIndex;backHash="#/"+top.id+"/"+sub.id;}
+ }
+ let h="";
+ if(!top){
+  h=`<h1>Class 10 study tracker</h1><p class="sub">Based on the CBSE 2026-27 syllabus. Only written-exam chapters are listed, with notes for map work and partial topics.</p><ul class="list">`+
+  S.map(s=>`<li><a class="row" style="--h:${s.h}" href="#/${s.id}"><b>${s.name}</b>${bar(s,s.h)}</a></li>`).join("")+`</ul>`;
+ }else if(isChapter && chapterNode && chapterNode.ch[chapterIndex]!==undefined){
+  const raw=chapterNode.ch[chapterIndex], name=raw.split("|")[0], note=raw.includes("|")?raw.split("|")[1]:"";
+  const theoryKey="theory/"+chapterKey, practiceKey="practice/"+chapterKey;
+  h=`<a class="back" href="${backHash}">← Back to chapters</a><h1>${name}</h1><p class="sub">Choose what you have completed for this chapter.</p>`+
+    (note?`<p class="chapter-note">${note}</p>`:"")+`<ul class="task-list">`+
+    `<li class="task"><input type="checkbox" id="theory-check" data-task="${theoryKey}" ${st[theoryKey]?"checked":""}><label for="theory-check">Theory</label></li>`+
+    `<li class="task"><input type="checkbox" id="practice-check" data-task="${practiceKey}" ${st[practiceKey]?"checked":""}><label for="practice-check">Practice</label></li>`+
+    `</ul>`;
+ }else if(top.sub&&!sub){
+  h=`<a class="back" href="#/">← All subjects</a><h1>${top.name}</h1><p class="sub">Choose a subject.</p><ul class="list">`+
+  top.sub.map(s=>`<li><a class="row" style="--h:${top.h}" href="#/${top.id}/${s.id}"><b>${s.name}</b>${bar(s,top.h)}</a></li>`).join("")+`</ul>`;
+ }else{
+  const n=sub||top,key=i=>(sub?sub.id:top.id)+"/"+i;
+  const k=n.ch.map((c,i)=>statusForChapter(key(i)));
+  const cnt=v=>k.filter(x=>x==v).length;
+  h=`<a class="back" href="#/${sub?top.id:""}">← ${sub?top.name:"All subjects"}</a><h1>${sub?top.name+": "+sub.name:top.name}</h1>
+  <p class="sum">${cnt("c")} complete, ${cnt("r")} need revision, ${cnt("x")} incomplete, ${k.length-cnt("c")-cnt("r")-cnt("x")} not marked</p>
+  <p class="sub" style="margin:0 0 8px">Tap a chapter to open its Theory and Practice checklist. Use the status box to track revision status.</p><div class="legend"><span class="l-c"><b>✓</b>Complete</span><span class="l-r"><b>○</b>Need revision</span><span class="l-x"><b>✗</b>Incomplete</span></div><ul class="list">`+
+  n.ch.map((c,i)=>`<li class="ch"><span class="n"><em>${i+1}</em><a class="ch-title" href="#/${top.id}/${sub?sub.id+"/":""}chapter/${i}">${c.split("|")[0]}</a>${c.includes("|")?`<small>${c.split("|")[1]}</small>`:""}</span><span class="b">`+boxHTML(key(i),c.split("|")[0])+`</span></li>`).join("")+`</ul>`;
+ }
+ app.innerHTML=h;
+}
+function closeMenus(){app.querySelectorAll(".menu").forEach(m=>{m.hidden=true;const x=m.previousElementSibling;if(x)x.setAttribute("aria-expanded","false")})}
+app.addEventListener("change",e=>{
+ const cb=e.target.closest("input[data-task]");
+ if(!cb)return;
+ if(cb.checked)st[cb.dataset.task]=true;else delete st[cb.dataset.task];
+ save();
+ const y=scrollY;render();scrollTo(0,y);
+});
+app.addEventListener("click",e=>{
+ const bx=e.target.closest("button[data-box]");
+ if(bx){const m=bx.nextElementSibling,was=!m.hidden;closeMenus();if(!was){m.hidden=false;bx.setAttribute("aria-expanded","true");const f=m.querySelector("button");if(f)f.focus()}return}
+ const b=e.target.closest("button[data-v]");
+ if(!b){closeMenus();return}
+ const k=b.dataset.k,v=b.dataset.v;
+ if(v==="")delete st[k];else st[k]=v;
+ save();const y=scrollY;render();scrollTo(0,y);
+ const nb=app.querySelector(`[data-box="${k}"]`);if(nb)nb.focus();
+});
+document.addEventListener("click",e=>{if(!e.target.closest(".b"))closeMenus()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenus()});
+addEventListener("hashchange",()=>{render();scrollTo(0,0)});
+render();
+</script></body></html>
